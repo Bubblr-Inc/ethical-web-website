@@ -1,0 +1,10 @@
+{
+  "slug": "404",
+  "nav": false,
+  "title": "Page not found — Ethical Web AI",
+  "description": "Page not found.",
+  "blocks": [
+    { "type": "pageHeading", "text": "Page not found" },
+    { "type": "richtext", "align": "center", "html": "<p>Sorry, that page doesn't exist. <a href=\"/\">Go back home</a>.</p>" }
+  ]
+}

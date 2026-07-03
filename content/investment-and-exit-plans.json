@@ -1,0 +1,22 @@
+{
+  "slug": "investment-and-exit-plans",
+  "navLabel": "Investment and Exit plans",
+  "title": "Investment and Exit Plans — Ethical Web AI",
+  "description": "Ethical Web AI's value is in its patents and defensible IP. Our exit strategy and the path to get there.",
+  "blocks": [
+    { "type": "pageHeading", "text": "Investment and Exit Plans" },
+    { "type": "heading", "text": "Ethical Web AI's strength and value are in its patents and defensible IP" },
+    { "type": "richtext", "align": "center", "html": "<p>This makes the company more like a Pharma startup rather than a tech startup. Our most likely exit will be being acquired by one of the biggest AI companies or one of the technology giants.</p>" },
+    { "type": "heading", "text": "We have routes and ways to get in front of the right people at the right time" },
+    { "type": "richtext", "align": "center", "html": "<p>We will start this process in the next six months once we are ready. It requires us to achieve three things:</p>" },
+    {
+      "type": "iconList",
+      "align": "center",
+      "items": [
+        { "text": "Raise sufficient funds to be fully capitalised (approximately $6m)" },
+        { "text": "Have the share price more closely represent the actual value of the business" },
+        { "text": "Achieve some sales of AI Vault to grow revenue" }
+      ]
+    }
+  ]
+}

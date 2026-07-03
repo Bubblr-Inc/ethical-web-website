@@ -1,0 +1,13 @@
+{
+  "slug": "privacy-policy",
+  "nav": false,
+  "title": "Privacy Policy — Ethical Web AI",
+  "description": "Privacy policy for ethicalweb.ai.",
+  "blocks": [
+    { "type": "pageHeading", "text": "Privacy Policy" },
+    {
+      "type": "richtext",
+      "html": "<h2>Who we are</h2><p>Our website address is: https://ethicalweb.ai.</p><h2>What personal data we collect and why we collect it</h2><p>If you contact us directly (for example by email), we may receive additional information about you such as your name, email address, the contents of your message, and any other information you choose to provide.</p><h2>Cookies</h2><p>This site does not use tracking or advertising cookies. Any cookies set are strictly limited to those required for the site to function.</p><h2>Embedded content from other websites</h2><p>Pages on this site may include embedded content (for example videos). Embedded content from other websites behaves in the exact same way as if the visitor had visited the other website directly, and that website may collect data about you, use cookies, and monitor your interaction with the embedded content.</p><h2>Who we share your data with</h2><p>We do not sell or share your personal data with third parties for marketing purposes.</p><h2>How long we retain your data</h2><p>If you contact us, correspondence is retained only as long as necessary to respond to and resolve your enquiry, or as required by law.</p><h2>What rights you have over your data</h2><p>If you have provided us with personal data, you can request an export of the data we hold about you, or request that we erase any personal data we hold about you. This does not include any data we are obliged to keep for administrative, legal, or security purposes.</p><h2>Contact</h2><p>If you have any questions about this privacy policy, please get in touch via <a href=\"https://ethicalweb.ai\">ethicalweb.ai</a>.</p>"
+    }
+  ]
+}

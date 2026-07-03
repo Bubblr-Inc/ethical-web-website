@@ -1,0 +1,10 @@
+{
+  "name": "ethicalweb-ai-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static site generator for ethicalweb.ai — JSON content, no framework, GitHub Pages ready.",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "serve": "npm run build && node scripts/serve.js"
+  }
+}

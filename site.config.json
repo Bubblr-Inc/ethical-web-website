@@ -1,0 +1,21 @@
+{
+  "siteName": "Ethical Web AI",
+  "siteUrl": "https://ethicalweb.ai",
+  "tagline": "Generative AI With Guardrails For Enterprise",
+  "logo": "/assets/images/logo-col.png",
+  "logoAlt": "Ethical Web AI",
+  "favicon": "/assets/images/AI-Vault_logo-372x372-1-150x150.png",
+  "themeColor": "#F00EF1",
+  "nav": [
+    { "label": "Home", "href": "/" },
+    { "label": "AI's Problems Solved", "href": "/ais-problems-solved/" },
+    { "label": "Our Products and Patents", "href": "/our-products-and-patents/" },
+    { "label": "Investment and Exit plans", "href": "/investment-and-exit-plans/" }
+  ],
+  "footer": {
+    "text": "© {{year}} Ethical Web AI. All rights reserved.",
+    "links": [
+      { "label": "Privacy Policy", "href": "/privacy-policy/" }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "slug": "",
+  "navLabel": "Home",
+  "title": "Ethical Web AI — Generative AI With Guardrails For Enterprise",
+  "description": "AI Vault and the Ethical Web Search platform: patent-protected data protection and search infrastructure for the next generation of AI.",
+  "blocks": [
+    {
+      "type": "videoHero",
+      "provider": "vimeo",
+      "videoId": "1161874324",
+      "poster": "/assets/images/AI-Vault_logo-372x372-1.png",
+      "autoplay": true
+    },
+    {
+      "type": "iconGrid",
+      "columns": 3,
+      "background": "none",
+      "items": [
+        { "icon": "hard-hat", "title": "We're rebuilding AI from the ground up" },
+        { "icon": "scroll", "title": "We own the patents that secure the assets that will decide AI's future: trusted data, not bigger models" },
+        { "icon": "magic", "title": "Access both Chat GPT and Claude together with just one license fee" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "slug": "our-products-and-patents",
+  "navLabel": "Our Products and Patents",
+  "title": "Our Products and Patents — Ethical Web AI",
+  "description": "AI Vault and the Ethical Web Search platform: two patent-protected products securing the assets that will decide AI's future.",
+  "blocks": [
+    { "type": "pageHeading", "text": "Our Products and Patents" },
+    {
+      "type": "columns",
+      "items": [
+        {
+          "logo": "/assets/images/AI-Vault_logo-372x372-1.png",
+          "logoAlt": "AI Vault",
+          "heading": "AI Vault",
+          "list": [
+            { "text": "Available as SaaS or on-premises" },
+            { "icon": "aws", "text": "AWS accredited solution. Available on AWS Marketplace" },
+            { "text": "Covered by three separate patents" },
+            { "text": "A gift to Data Protection Officers with complete control, visibility and measurability of data protection compliance" },
+            { "icon": "video", "text": "Very simple to implement", "link": "https://youtu.be/Ds9OwTxchAo" }
+          ]
+        },
+        {
+          "logo": "/assets/images/logo-col.png",
+          "logoAlt": "Ethical Web Search",
+          "heading": "Ethical Web Search",
+          "list": [
+            { "text": "Radically new way to search that is completely anonymous and extremely precise" },
+            { "text": "It was independently valued at $4.7bn in 2021; now, because of AI, it is worth much more" },
+            { "icon": "video", "text": "A summary of the benefits of the Ethical Web Search Platform", "link": "https://youtu.be/0ajcUBNVKLE" },
+            { "icon": "video", "text": "A new way to search the Internet", "link": "https://youtu.be/fhiBqkbFBFo" },
+            { "text": "Delivered and built as community-level super apps" },
+            { "icon": "video", "text": "A podcast that discusses how the Ethical Web Search platform fixes the future of AI", "link": "https://youtu.be/WFAm8BOrPwI" },
+            { "text": "Whoever owns this technology will have unique access to an AI super database of real-time data on global products and services availability." }
+          ]
+        }
+      ]
+    }
+  ]
+}

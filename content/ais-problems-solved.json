@@ -1,0 +1,60 @@
+{
+  "slug": "ais-problems-solved",
+  "navLabel": "AI's Problems Solved",
+  "title": "AI's Problems Solved — Ethical Web AI",
+  "description": "Generative AI has ignored data protection and has no working monetisation model. Here's how AI Vault and the Ethical Web Search platform fix both.",
+  "blocks": [
+    { "type": "pageHeading", "text": "AI's Problems Solved" },
+    { "type": "heading", "text": "The biggest problem Generative AI has right now is data protection" },
+    {
+      "type": "iconGrid",
+      "columns": 2,
+      "background": "none",
+      "items": [
+        { "icon": "mask", "title": "Generative AI has completely ignored the lack of data protection" },
+        { "icon": "dizzy", "title": "27% of all companies (mainly large ones) will not use Gen. AI because of this risk" },
+        { "icon": "user-lock", "title": "AI Vault is the only turn-key solution to this problem, and it is patent-protected" },
+        { "icon": "video", "title": "Watch: Generative AI vs GDPR", "link": "https://ai-vault.io/the-enterprise-ai-gdpr-gap/" }
+      ]
+    },
+    { "type": "heading", "text": "The biggest problem Generative AI has in the future is how it can be monetised", "background": "tint" },
+    {
+      "type": "cardGrid",
+      "background": "tint",
+      "items": [
+        {
+          "image": "/assets/images/maxresdefault.jpg",
+          "alt": "Sam Altman",
+          "title": "Sam Altman has been red-flagged on how OpenAI is going to justify its valuation",
+          "link": "https://youtu.be/pO9L1HRqQLQ?si=mNLxJ9r0mURv7CvP",
+          "linkText": "Watch",
+          "linkIcon": "video"
+        },
+        {
+          "image": "/assets/images/OpenAI-Logo.webp",
+          "alt": "OpenAI logo",
+          "title": "OpenAI is looking for Erotica to monetise ChatGPT",
+          "link": "https://variety.com/2025/digital/news/openai-erotica-chatgpt-anti-porn-group-ncose-1236553925/",
+          "linkText": "Read",
+          "linkIcon": "book-open"
+        },
+        {
+          "image": "/assets/images/maxresdefault-1.jpg",
+          "alt": "Advertising and Generative AI",
+          "title": "Advertising will not work with Generative AI",
+          "link": "https://www.youtube.com/shorts/uzGfThXjYvI",
+          "linkText": "Watch",
+          "linkIcon": "video"
+        },
+        {
+          "image": "/assets/images/maxresdefault-2.jpg",
+          "alt": "The Ad-tech model is broken",
+          "title": "The Ad-tech model is broken",
+          "link": "https://www.youtube.com/watch?v=blg4Ik2uIOg",
+          "linkText": "Watch",
+          "linkIcon": "video"
+        }
+      ]
+    }
+  ]
+}
