@@ -1,6 +1,7 @@
 {
   "siteName": "Ethical Web AI",
-  "siteUrl": "https://ethicalweb.ai",
+  "siteUrl": "https://bubblr-inc.github.io/ethical-web-website",
+  "basePath": "/ethical-web-website",
   "tagline": "Generative AI With Guardrails For Enterprise",
   "logo": "/assets/images/logo-col.png",
   "logoAlt": "Ethical Web AI",

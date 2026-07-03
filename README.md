@@ -79,14 +79,41 @@ The included workflow (`.github/workflows/deploy.yml`) builds the site and
 publishes `dist/` via GitHub's official Pages Actions on every push to
 `main`. One-time setup in the repo:
 
-1. Push this repo to GitHub.
+1. Push this repo to GitHub. **The repo (or the org's plan) must allow
+   Pages** — Pages on a private repo requires GitHub Team/Enterprise; on
+   the Free plan the repo needs to be public.
 2. Repo **Settings → Pages → Source → GitHub Actions**.
 3. Push to `main` — the workflow builds and deploys automatically.
 
-To keep the `ethicalweb.ai` custom domain, add `"customDomain": "ethicalweb.ai"`
-to `site.config.json` (the build writes the `CNAME` file for you), and point
-the domain's DNS at GitHub Pages per
-[GitHub's custom-domain docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site).
+### `basePath` — subpath vs. custom domain
+
+`site.config.json` has two fields that must stay in sync with where the site
+actually lives:
+
+- `basePath` — the URL prefix every internal link/asset gets rendered with.
+  GitHub's default project-pages URL (`<org>.github.io/<repo>/`) serves from
+  a subpath, so it needs `"basePath": "/<repo-name>"`. A custom domain at the
+  root needs `"basePath": ""`.
+- `siteUrl` — the fully-qualified origin **including** that basePath (used
+  only for `<link rel="canonical">` / Open Graph tags), e.g.
+  `https://bubblr-inc.github.io/ethical-web-website` today.
+
+`npm run serve` reads the same `basePath` and serves locally under that
+prefix too (redirecting `/` → `/<basePath>/`), so what you see locally
+matches what ships.
+
+**Cutting over to the `ethicalweb.ai` custom domain later:**
+
+1. In `site.config.json`, set `"basePath": ""`, `"siteUrl": "https://ethicalweb.ai"`,
+   and add `"customDomain": "ethicalweb.ai"` (the build then writes the
+   `CNAME` file into `dist/` for you).
+2. Point the domain's DNS at GitHub Pages per
+   [GitHub's custom-domain docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site)
+   (either an ALIAS/ANAME or the four GitHub Pages `A` records for the apex,
+   or a `CNAME` to `bubblr-inc.github.io` for `www`).
+3. Add the same custom domain under repo Settings → Pages → Custom domain.
+4. Push — the next deploy serves correctly from the root, no other changes
+   needed.
 
 ## Content source
 

@@ -9,6 +9,12 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..', 'dist');
 const PORT = process.env.PORT || 4000;
 
+// Match production: pages are built with links under site.config.json's
+// basePath (e.g. "/ethical-web-website" for the default GitHub Pages
+// project URL), so serve dist/ under that same prefix locally too.
+const site = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'site.config.json'), 'utf8'));
+const BASE_PATH = (site.basePath || '').replace(/\/$/, '');
+
 const MIME = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -31,7 +37,15 @@ function resolvePath(urlPath) {
 }
 
 const server = http.createServer((req, res) => {
-  let full = resolvePath(req.url);
+  const urlPath = req.url.split('?')[0];
+
+  if (BASE_PATH && !urlPath.startsWith(BASE_PATH)) {
+    res.writeHead(302, { Location: BASE_PATH + '/' });
+    return res.end();
+  }
+
+  const withoutBase = BASE_PATH ? req.url.slice(BASE_PATH.length) || '/' : req.url;
+  let full = resolvePath(withoutBase);
   if (!full) {
     res.writeHead(400);
     return res.end('Bad request');
@@ -51,5 +65,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Serving dist/ at http://localhost:${PORT}`);
+  console.log(`Serving dist/ at http://localhost:${PORT}${BASE_PATH}/`);
 });

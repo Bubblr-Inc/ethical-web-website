@@ -20,6 +20,25 @@ const CONFIG_PATH = path.join(ROOT, 'site.config.json');
 
 const site = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
 
+// GitHub Project Pages (the default <org>.github.io/<repo>/ URL) serve the
+// site from a subpath, not the domain root — so every root-relative link
+// and asset src needs that subpath prefixed. Set once in site.config.json;
+// switch basePath back to "" (and siteUrl to the bare domain) once a custom
+// domain serving from "/" is wired up.
+const BASE_PATH = (site.basePath || '').replace(/\/$/, '');
+
+function withBase(p) {
+  if (!p || /^https?:\/\//.test(p)) return p;
+  return `${BASE_PATH}${p}`;
+}
+
+// Rewrites root-relative href="/…" links inside author-written richtext
+// HTML so internal links keep working under a basePath too. Leaves
+// external (http/https) links untouched.
+function withBaseInHtml(html) {
+  return html.replace(/href="(\/[^"]*)"/g, (_m, p1) => `href="${withBase(p1)}"`);
+}
+
 function escapeHtml(str) {
   return String(str)
     .replace(/&/g, '&amp;')
@@ -76,7 +95,7 @@ const blockRenderers = {
 
   richtext(block) {
     const align = block.align ? ` align-${block.align}` : '';
-    return `<section class="section section--flow${bgClass(block.background)}"><div class="container richtext${align}">${block.html}</div></section>`;
+    return `<section class="section section--flow${bgClass(block.background)}"><div class="container richtext${align}">${withBaseInHtml(block.html)}</div></section>`;
   },
 
   iconGrid(block) {
@@ -95,7 +114,7 @@ const blockRenderers = {
       .map((item) => {
         return `<div class="card">
           <a class="card__media" href="${escapeHtml(item.link)}" target="_blank" rel="noopener">
-            <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt || '')}" loading="lazy" width="640" height="360">
+            <img src="${escapeHtml(withBase(item.image))}" alt="${escapeHtml(item.alt || '')}" loading="lazy" width="640" height="360">
           </a>
           <h3 class="card__title">${escapeHtml(item.title)}</h3>
           <a class="card__link" href="${escapeHtml(item.link)}" target="_blank" rel="noopener">${renderIcon(item.linkIcon || 'video', 'card__link-icon')}<span>${escapeHtml(item.linkText || 'Read more')}</span></a>
@@ -115,7 +134,7 @@ const blockRenderers = {
     const cols = block.items
       .map((col) => {
         const logo = col.logo
-          ? `<span class="col__logo-wrap"><img class="col__logo" src="${escapeHtml(col.logo)}" alt="${escapeHtml(col.logoAlt || '')}" loading="lazy"></span>`
+          ? `<span class="col__logo-wrap"><img class="col__logo" src="${escapeHtml(withBase(col.logo))}" alt="${escapeHtml(col.logoAlt || '')}" loading="lazy"></span>`
           : '';
         const list = col.list.map(renderIconListItem).join('');
         return `<div class="col">${logo}<h2 class="col__heading">${escapeHtml(col.heading)}</h2><ul class="icon-list">${list}</ul></div>`;
@@ -166,12 +185,12 @@ function renderHeader(page) {
   const navItems = (site.nav || [])
     .map((item) => {
       const active = item.href === hrefFor(page.slug) ? ' is-active' : '';
-      return `<a class="nav__link${active}" href="${item.href}">${escapeHtml(item.label)}</a>`;
+      return `<a class="nav__link${active}" href="${withBase(item.href)}">${escapeHtml(item.label)}</a>`;
     })
     .join('');
   return `<header class="site-header">
     <div class="container header__inner">
-      <a href="/"><img src="${site.logo}" alt="${escapeHtml(site.logoAlt || site.siteName)}" width="160" height="45"></a>
+      <a href="${withBase('/')}"><img src="${withBase(site.logo)}" alt="${escapeHtml(site.logoAlt || site.siteName)}" width="160" height="45"></a>
       <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         ${renderIcon('grip-lines', 'nav-toggle__icon')}<span>Menu</span>
       </button>
@@ -184,7 +203,7 @@ function renderFooter() {
   const year = new Date().getFullYear();
   const text = (site.footer && site.footer.text || '').replace('{{year}}', year);
   const links = ((site.footer && site.footer.links) || [])
-    .map((l) => `<a href="${l.href}">${escapeHtml(l.label)}</a>`)
+    .map((l) => `<a href="${withBase(l.href)}">${escapeHtml(l.label)}</a>`)
     .join('');
   return `<footer class="site-footer">
     <div class="container footer__inner">
@@ -196,6 +215,9 @@ function renderFooter() {
 
 function renderPage(page) {
   const body = page.blocks.map(renderBlock).join('\n');
+  // site.siteUrl is the fully-qualified origin *including* any basePath
+  // (e.g. https://bubblr-inc.github.io/ethical-web-website), so joining it
+  // with the root-relative hrefFor() gives the correct absolute URL as-is.
   const canonical = `${site.siteUrl}${hrefFor(page.slug)}`;
   return `<!doctype html>
 <html lang="en">
@@ -205,7 +227,7 @@ function renderPage(page) {
 <title>${escapeHtml(page.title)}</title>
 <meta name="description" content="${escapeHtml(page.description || '')}">
 <link rel="canonical" href="${canonical}">
-<link rel="icon" href="${site.favicon}">
+<link rel="icon" href="${withBase(site.favicon)}">
 <meta name="theme-color" content="${site.themeColor || '#000000'}">
 <meta property="og:title" content="${escapeHtml(page.title)}">
 <meta property="og:description" content="${escapeHtml(page.description || '')}">
@@ -215,7 +237,7 @@ function renderPage(page) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="${withBase('/assets/css/style.css')}">
 </head>
 <body>
 ${renderHeader(page)}
@@ -223,7 +245,7 @@ ${renderHeader(page)}
 ${body}
 </main>
 ${renderFooter()}
-<script src="/assets/js/main.js"></script>
+<script src="${withBase('/assets/js/main.js')}"></script>
 </body>
 </html>
 `;
